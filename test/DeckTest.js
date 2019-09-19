@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const assert = require('assert');
 const Deck = require('../libs/deck');
+const Card = require('../libs/card');
 
 describe('Deck', function() {
   describe('#constructor()', function() {
@@ -77,12 +78,38 @@ describe('Deck', function() {
 
     it('the card should not be in the deck', function() {
       originalCardSearch = _.filter(deck.cards, {'rank': topCard.rank, 'suit': topCard.suit, 'value': topCard.value});
-      assert.ok(originalCardSearch.length === 0);
+      assert.equal(originalCardSearch.length,  0);
     });
 
     it('should reduce the size of the deck by 1', function() {
       newDeckSize = deck.cards.length;
-      assert.ok(newDeckSize === (deckSize - 1));
+      assert.equal(newDeckSize, deckSize - 1);
+    });
+  });
+
+  describe('#addCard()', function() {
+    const deck = new Deck();
+    const rank = '8';
+    const suit = 'clubs';
+    const value = 6;
+    const card = new Card(rank, suit, value);
+    deck.generate();
+    deck.addCard(card);
+
+    it('should have the new card', function() {
+      cardSearch = _.filter(deck.cards, {'rank': rank, 'suit': suit, 'value': value});
+
+      assert.equal(cardSearch.length, 2);
+    });
+
+    it('should have new card at bottom of deck', function() {
+      assert.equal(_.last(deck.cards).rank, rank);
+      assert.equal(_.last(deck.cards).suit, suit);
+      assert.equal(_.last(deck.cards).value, value);
+    });
+
+    it('should have 53 cards', function() {
+      assert.equal(deck.cards.length, 53);
     });
   });
 });
