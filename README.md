@@ -1,7 +1,7 @@
 # cards 
 Simple JS playing card library
 
-## usage
+## Usage
 ```js
 const cards = require('cards');
 
