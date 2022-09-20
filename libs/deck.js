@@ -45,15 +45,15 @@ class Deck {
     this.cards = _.shuffle(this.cards);
   }
 
-  drawTopCard() {
+  draw() {
     return this.cards.shift();
   }
 
-  drawRandomCard() {
+  drawRandom() {
     return _.sample(this.cards);
   }
 
-  addCard(card) {
+  add(card) {
     this.cards.push(card);
   }
 

@@ -62,13 +62,13 @@ describe('Deck', function() {
     });
   });
 
-  describe('#drawTopCard()', function() {
+  describe('#draw()', function() {
     const deck = new Deck();
     deck.generate();
     deckSize = deck.cards.length;
     card = deck.cards[0];
     originalCardSearch = _.filter(deck.cards, {'rank': card.rank, 'suit': card.suit, 'value': card.value});
-    topCard = deck.drawTopCard();
+    topCard = deck.draw();
 
     it('should take the first card', function() {
       assert.equal(card.rank, topCard.rank);
@@ -87,14 +87,14 @@ describe('Deck', function() {
     });
   });
 
-  describe('#addCard()', function() {
+  describe('#add()', function() {
     const deck = new Deck();
     const rank = '8';
     const suit = 'clubs';
     const value = 6;
     const card = new Card(rank, suit, value);
     deck.generate();
-    deck.addCard(card);
+    deck.add(card);
 
     it('should have the new card', function() {
       cardSearch = _.filter(deck.cards, {'rank': rank, 'suit': suit, 'value': value});
